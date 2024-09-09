@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class IndovinaParola {
     public static void main(String[] args) {
         String[] parole = {"sole", "cane", "libro", "mare", "fiore", "cielo", "penna", "sedia", "albero", "casa", 
