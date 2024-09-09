@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class IndovinaParola {
+    public static void main(String[] args) {
+        String[] parole = {"sole", "cane", "libro", "mare", "fiore", "cielo", "penna", "sedia", "albero", "casa", 
+                           "fiume", "montagna", "gatto", "bicicletta", "strada", "vento", "pioggia", "neve", "luna", 
+                           "stella", "auto", "treno", "aereo", "barca", "telefono", "computer", "tavolo", "porta", 
+                           "finestra", "muro", "letto", "divano", "lampada", "quadro", "specchio", "armadio", "scarpa", 
+                           "calzino", "pantalone", "camicia", "giacca", "cappello", "guanto", "borsa", "zaino", "valigia", 
+                           "orologio", "occhiali", "anello", "collana", "bracciale", "ombrello", "chiave", "moneta", 
+                           "banconota", "borsellino", "bicchiere", "tazza", "piatto", "forchetta", "cucchiaio", "coltello", 
+                           "pentola", "padella", "frigorifero", "forno", "microonde", "lavatrice", "asciugatrice", 
+                           "aspirapolvere", "televisione", "radio", "altoparlante", "cuffie", "microfono", "fotocamera", 
+                           "videocamera", "telefono", "tablet", "laptop", "stampante", "scanner", "mouse", "tastiera", 
+                           "monitor", "proiettore", "lavagna", "penna", "matita", "gomma", "righello", "temperino", 
+                           "zaino", "cartella", "quaderno", "agenda", "calendario", "mappamondo", "atlante", "dizionario"};
+
+        String parola = parole[(int) (Math.random() * parole.length)].trim();
+
+        int tentativi = 10;
+        String lettereIndovinate = "";
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (tentativi > 0 && !tutteLettereIndovinate(parola, lettereIndovinate)) {
+            for (char lettera : parola.toCharArray()) {
+                if (lettereIndovinate.indexOf(lettera) >= 0) {
+                    System.out.print(lettera + " ");
+                } else {
+                    System.out.print("_ ");
+                }
+            }
+            System.out.println();
+
+            System.out.print("Indovina una lettera: ");
+            char lettera = scanner.next().toLowerCase().charAt(0);
+
+            if (parola.indexOf(lettera) >= 0) {
+                lettereIndovinate += lettera;
+                System.out.println("Hai indovinato!");
+            } else {
+                tentativi--;
+                System.out.println("Sbagliato. Ti restano " + tentativi + " tentativi.");
+            }
+        }
+
+        if (tutteLettereIndovinate(parola, lettereIndovinate)) {
+            System.out.println("Complimenti, hai indovinato la parola " + parola + "!");
+        } else {
+            System.out.println("Mi dispiace, hai esaurito i tentativi. La parola era " + parola + ".");
+        }
+
+        scanner.close();
+    }
+
+    private static boolean tutteLettereIndovinate(String parola, String lettereIndovinate) {
+        for (char lettera : parola.toCharArray()) {
+            if (lettereIndovinate.indexOf(lettera) < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
