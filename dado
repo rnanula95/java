@@ -1,0 +1,23 @@
+import java.util.Random;
+
+public class DiceGame {
+    public static void main(String[] args) {
+        Random random = new Random();
+        
+        int dado1 = random.nextInt(6) + 1;
+        int dado2 = random.nextInt(6) + 1;
+        
+        int esito = dado1 + dado2;
+        
+        System.out.println(dado1 + " + " + dado2);
+        System.out.println(esito);
+        
+        if (dado1 == dado2) {
+            System.out.println("Hai vinto!");
+        } else if (dado1 + dado2 == 7) {
+            System.out.println("Hai vinto!");
+        } else {
+            System.out.println("Hai perso!");
+        }
+    }
+}
