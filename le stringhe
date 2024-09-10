@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("inserisci una parola: ");
+        String str1 = scanner.nextLine();
+        
+        System.out.print("inserisci un'altra parola: ");
+        String str2 = scanner.nextLine();
+        
+        if (str1.length() > str2.length()) {
+            System.out.println(str1 + " e' piu lunga di " + str2);
+        } else if (str1.length() == str2.length()) {
+            System.out.println("le due parole sono lunghe uguali");
+        } else {
+            System.out.println(str2 + " e' piu lunga di " + str1);
+        }
+        
+        scanner.close();
+    }
+}
