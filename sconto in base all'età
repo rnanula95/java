@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class DiscountCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Quanti anni hai? ");
+        int age = scanner.nextInt();
+
+        if (age < 18) {
+            System.out.println("Hai diritto al 10% di sconto");
+        } else if (age >= 18 && age <= 50) {
+            System.out.println("Hai diritto al 30% di sconto");
+        } else {
+            System.out.println("Hai diritto al 50% di sconto");
+        }
+        
+        scanner.close();
+    }
+}
