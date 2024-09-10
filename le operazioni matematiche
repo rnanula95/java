@@ -1,0 +1,170 @@
+import java.util.*;
+
+public class Calculator {
+    public static Pair<Double, Double> trovaMinMax(List<Double> numeri) {
+        double minNum = Collections.min(numeri);
+        double maxNum = Collections.max(numeri);
+        return new Pair<>(minNum, maxNum);
+    }
+
+    public static Pair<String, Double> eseguiOperazione(List<Double> numeri, int operazione) {
+        switch (operazione) {
+            case 1:
+                return new Pair<>("Somma", numeri.stream().mapToDouble(Double::doubleValue).sum());
+            case 2:
+                double risultato = numeri.get(0);
+                for (int i = 1; i < numeri.size(); i++) {
+                    risultato -= numeri.get(i);
+                }
+                return new Pair<>("Sottrazione", risultato);
+            case 3:
+                risultato = 1;
+                for (double numero : numeri) {
+                    risultato *= numero;
+                }
+                return new Pair<>("Moltiplicazione", risultato);
+            case 4:
+                risultato = numeri.get(0);
+                for (int i = 1; i < numeri.size(); i++) {
+                    risultato /= numeri.get(i);
+                }
+                return new Pair<>("Divisione", risultato);
+            case 5:
+                risultato = numeri.get(0);
+                for (int i = 1; i < numeri.size(); i++) {
+                    risultato = Math.floor(risultato / numeri.get(i));
+                }
+                return new Pair<>("Divisione intera", risultato);
+            case 6:
+                risultato = numeri.get(0);
+                for (int i = 1; i < numeri.size(); i++) {
+                    risultato %= numeri.get(i);
+                }
+                return new Pair<>("Modulo", risultato);
+            case 7:
+                risultato = numeri.get(0);
+                for (int i = 1; i < numeri.size(); i++) {
+                    risultato = Math.pow(risultato, numeri.get(i));
+                }
+                return new Pair<>("Potenza", risultato);
+            case 8:
+                return new Pair<>("Media", numeri.stream().mapToDouble(Double::doubleValue).average().orElse(0.0));
+            case 9:
+                Pair<Double, Double> minMax = trovaMinMax(numeri);
+                return new Pair<>("Numero minore", minMax.getKey());
+            case 10:
+                minMax = trovaMinMax(numeri);
+                return new Pair<>("Numero maggiore", minMax.getValue());
+            default:
+                return new Pair<>(null, null);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Quanti numeri vuoi inserire? ");
+        int n = scanner.nextInt();
+        List<Double> numeri = new ArrayList<>();
+
+        for (int x = 0; x < n; x++) {
+            System.out.print("Inserisci il numero " + (x + 1) + ": ");
+            double numero = scanner.nextDouble();
+            numeri.add(numero);
+        }
+
+        System.out.print("Vuoi calcolare tutte le operazioni insieme? (si/no): ");
+        String tutteOperazioni = scanner.next().toLowerCase();
+
+        List<Integer> operazioni;
+        if (tutteOperazioni.equals("si")) {
+            operazioni = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        } else {
+            System.out.println("Scegli l'operazione da eseguire:");
+            System.out.println("1. Somma");
+            System.out.println("2. Sottrazione");
+            System.out.println("3. Moltiplicazione");
+            System.out.println("4. Divisione");
+            System.out.println("5. Divisione intera");
+            System.out.println("6. Modulo");
+            System.out.println("7. Potenza");
+            System.out.println("8. Media");
+            System.out.println("9. Numero minore");
+            System.out.println("10. Numero maggiore");
+            System.out.print("Inserisci il numero dell'operazione scelta: ");
+            int operazione = scanner.nextInt();
+            operazioni = Collections.singletonList(operazione);
+        }
+
+        for (int operazione : operazioni) {
+            Pair<String, Double> risultato = eseguiOperazione(numeri, operazione);
+            if (risultato.getKey() != null) {
+                System.out.println(risultato.getKey() + ": " + risultato.getValue());
+            } else {
+                System.out.println("Operazione " + operazione + " non valida.");
+            }
+        }
+
+        while (tutteOperazioni.equals("no")) {
+            System.out.print("Vuoi comunque controllare tutte le operazioni? (si/no): ");
+            String controllaTutte = scanner.next().toLowerCase();
+            if (controllaTutte.equals("si")) {
+                System.out.println("Numeri scelti: " + numeri);
+                for (int operazione = 1; operazione <= 10; operazione++) {
+                    Pair<String, Double> risultato = eseguiOperazione(numeri, operazione);
+                    if (risultato.getKey() != null) {
+                        System.out.println(risultato.getKey() + ": " + risultato.getValue());
+                    } else {
+                        System.out.println("Operazione " + operazione + " non valida.");
+                    }
+                }
+                break;
+            } else {
+                System.out.print("Vuoi vedere un'altra operazione? (si/no): ");
+                String altraOperazione = scanner.next().toLowerCase();
+                if (altraOperazione.equals("si")) {
+                    System.out.println("Scegli l'operazione da eseguire:");
+                    System.out.println("1. Somma");
+                    System.out.println("2. Sottrazione");
+                    System.out.println("3. Moltiplicazione");
+                    System.out.println("4. Divisione");
+                    System.out.println("5. Divisione intera");
+                    System.out.println("6. Modulo");
+                    System.out.println("7. Potenza");
+                    System.out.println("8. Media");
+                    System.out.println("9. Numero minore");
+                    System.out.println("10. Numero maggiore");
+                    System.out.print("Inserisci il numero dell'operazione scelta: ");
+                    int operazione = scanner.nextInt();
+                    Pair<String, Double> risultato = eseguiOperazione(numeri, operazione);
+                    if (risultato.getKey() != null) {
+                        System.out.println(risultato.getKey() + ": " + risultato.getValue());
+                    } else {
+                        System.out.println("Operazione " + operazione + " non valida.");
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+        scanner.close();
+    }
+}
+
+class Pair<K, V> {
+    private K key;
+    private V value;
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public K getKey() {
+        return key;
+    }
+
+    public V getValue() {
+        return value;
+    }
+}
+
