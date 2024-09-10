@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class GiorniDellaSettimana {
+    public static void main(String[] args) {
+        final int Lun = 1;
+        final int Mar = 2;
+        final int Mer = 3;
+        final int Gio = 4;
+        final int Ven = 5;
+        final int Sab = 6;
+        final int Dom = 7;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Scrivi un numero tra 1 e 7: ");
+        int Giorno = scanner.nextInt();
+
+        switch (Giorno) {
+            case Lun:
+                System.out.println("Hai scelto il Lunedi!");
+                break;
+            case Mar:
+                System.out.println("Hai scelto il Martedi!");
+                break;
+            case Mer:
+                System.out.println("Hai scelto il Mercoledi!");
+                break;
+            case Gio:
+                System.out.println("Hai scelto il Giovedi!");
+                break;
+            case Ven:
+                System.out.println("Hai scelto il Venerdi!");
+                break;
+            case Sab:
+                System.out.println("Hai scelto il Sabato!");
+                break;
+            case Dom:
+                System.out.println("Hai scelto la Domenica!");
+                break;
+            default:
+                System.out.println("Ma sai leggere le istruzioni?");
+                break;
+        }
+
+        scanner.close();
+    }
+}
