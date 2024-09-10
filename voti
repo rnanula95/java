@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class FeedbackEvaluation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("inserisci una valutazione tra 0 e 10: ");
+        int feedback = scanner.nextInt();
+
+        if (0 <= feedback && feedback <= 5) {
+            System.out.println("Insufficiente");
+        } else if (feedback == 6) {
+            System.out.println("Sufficiente");
+        } else if (7 <= feedback && feedback <= 8) {
+            System.out.println("Buono");
+        } else if (9 <= feedback && feedback <= 10) {
+            System.out.println("Eccellente");
+        }
+        
+        scanner.close();
+    }
+}
+
+
+
