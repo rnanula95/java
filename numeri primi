@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+    public static boolean primo(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        for (int x = 2; x <= Math.sqrt(n); x++) {
+            if (n % x == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("Scrivi un numero: ");
+            int num;
+            try {
+                num = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Prego, inserire un numero");
+                continue;
+            }
+
+            if (primo(num)) {
+                System.out.println(num + " e' un numero primo!");
+            } else {
+                System.out.println(num + " non e' un numero primo.");
+            }
+
+            System.out.print("Vuoi inserire un altro numero? (s/n): ");
+            String nuovo = scanner.nextLine().trim().toLowerCase();
+            if (!nuovo.equals("s")) {
+                System.out.println("Programma terminato.");
+                break;
+            }
+        }
+        scanner.close();
+    }
+}
+
