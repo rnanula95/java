@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+public class EstrazioneNumeri {
+    public static void main(String[] args) {
+        List<Integer> sacco = new ArrayList<>();
+        List<Integer> numeriEstratti = new ArrayList<>();
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+
+        for (int n = 1; n < 91; n++) {
+            sacco.add(n);
+        }
+
+        while (!sacco.isEmpty()) {
+            System.out.print("Estrarre il prossimo numero? ");
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("ESTRATTI")) {
+                System.out.println("Numeri estratti: " + numeriEstratti);
+            } else {
+                int index = random.nextInt(sacco.size());
+                int x = sacco.remove(index);
+                numeriEstratti.add(x);
+                System.out.println("Ho estratto il numero " + x);
+            }
+        }
+
+        System.out.println("Hai estratto tutti i numeri dal sacco");
+        scanner.close();
+    }
+}
