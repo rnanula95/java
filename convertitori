@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Converter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Convertitore Bitcoin-Euro
+        System.out.print("Inserisci il valore in Bitcoin: ");
+        int es = scanner.nextInt();
+        int btc = 40000;
+        int euro = es * btc;
+        System.out.println(es + " Bitcoin sono equivalenti a " + euro + " Euro.");
+        System.out.println();
+
+        // Convertitore da Bit a Byte
+        System.out.print("inserisci il valore in bit: ");
+        es = scanner.nextInt();
+        int bit = 8;
+        int byteValue = es * bit;
+        System.out.println(es + " Byte sono equivalenti a " + byteValue + " bit");
+        System.out.println();
+
+        // Convertitore da Galloni a Litri
+        System.out.print("inserisci il valore in galloni: ");
+        int galloni = scanner.nextInt();
+        double litri = galloni * 3.8;
+        System.out.println(litri + " Litri sono equivalenti a " + galloni + " galloni");
+        System.out.println();
+
+        // Convertitore da Miglia a Chilometri
+        System.out.print("inserisci il valore in miglia: ");
+        int miglia = scanner.nextInt();
+        double chilometri = miglia * 1.60934;
+        System.out.println(miglia + " miglia sono equivalenti a " + chilometri + " chilometri");
+        System.out.println();
+    }
+}
